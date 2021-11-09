@@ -26,7 +26,7 @@ class MovieListRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.binding.name.text = item.name
-        holder.binding.removeMovieButton.setOnClickListener { viewModel.addMovie() }
+        holder.binding.removeMovieButton.setOnClickListener { viewModel.addMovie(item) }
     }
 
     override fun getItemCount(): Int = values.size
@@ -35,7 +35,7 @@ class MovieListRecyclerViewAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         override fun toString(): String {
-            return super.toString() + " '" + nameView.text + "'"
+            return super.toString() + " '" + binding.name.text + "'"
         }
     }
 }
