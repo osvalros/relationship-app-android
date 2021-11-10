@@ -9,7 +9,6 @@
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".movie_night.MovieListFragment"
     tools:listitem="@layout/movie_item"
     tools:itemCount="5"
     />
