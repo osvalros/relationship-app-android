@@ -1,18 +1,10 @@
 package cz.osvald.rostislav.relationshipapp
 
-import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import androidx.navigation.Navigation
+import androidx.appcompat.app.AppCompatActivity
 import cz.osvald.rostislav.relationshipapp.databinding.ActivityMainBinding
-import cz.osvald.rostislav.relationshipapp.movie_night.MovieNightActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,14 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.crossroadsMovieNightButton.setOnClickListener { view ->
-            startActivity(Intent(this, MovieNightActivity::class.java))
-//            Navigation.findNavController(this, R.id.main_activity_layout).navigate(R.id.MovieNightActivity)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

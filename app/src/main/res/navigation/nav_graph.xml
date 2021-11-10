@@ -2,30 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
-
-    <activity
-        android:id="@+id/MovieNightActivity"
-        android:name="cz.osvald.rostislav.relationshipapp.movie_night.MovieNightActivity" />
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MainMenuFragment"
+    >
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="cz.osvald.rostislav.relationshipapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/MainMenuFragment"
+        android:name="cz.osvald.rostislav.relationshipapp.MainMenuFragment"
+        android:label="MainMenuFragment"
+        >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_MainMenuFragment_to_movie_night_graph"
+            app:destination="@id/movie_night" />
     </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="cz.osvald.rostislav.relationshipapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+    <include app:graph="@navigation/movie_night"/>
 </navigation>
