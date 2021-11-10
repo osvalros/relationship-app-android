@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include android:id="@+id/movie_list" layout="@layout/fragment_movie_list"/>
+    <include android:id="@+id/movie_list" layout="@layout/movie_list" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_movie_button"
