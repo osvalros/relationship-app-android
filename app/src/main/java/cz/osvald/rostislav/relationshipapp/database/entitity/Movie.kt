@@ -6,7 +6,9 @@ import java.time.LocalDateTime
 
 @Entity
 data class Movie(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = null,
+
     val name: String,
     var created: LocalDateTime = LocalDateTime.now(),
     var viewedAt: LocalDateTime? = null
