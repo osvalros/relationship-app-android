@@ -18,4 +18,5 @@
     <string name="cancel">Cancel</string>
     <string name="relationship_app">Relationship App</string>
     <string name="movie_name">Movie name</string>
+    <string name="history">History</string>
 </resources>
