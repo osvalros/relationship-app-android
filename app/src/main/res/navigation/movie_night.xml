@@ -2,9 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/movie_night"
-    app:startDestination="@id/movieNightFragment">
+    app:startDestination="@id/MovieNightFragment">
     <fragment
-        android:id="@+id/movieNightFragment"
+        android:id="@+id/MovieNightFragment"
         android:name="cz.osvald.rostislav.relationshipapp.movie_night.MovieNightFragment"
-        android:label="MovieNightFragment" />
+        android:label="MovieNightFragment"
+        >
+        <action
+            android:id="@+id/action_MovieNightFragment_to_MovieNightHistoryFragment"
+            app:destination="@id/MovieNightHistoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/MovieNightHistoryFragment"
+        android:name="cz.osvald.rostislav.relationshipapp.movie_night.MovieNightHistoryFragment"
+        android:label="MovieNightHistoryFragment" />
 </navigation>

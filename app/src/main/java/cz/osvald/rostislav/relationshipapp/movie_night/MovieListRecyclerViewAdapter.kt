@@ -2,8 +2,8 @@ package cz.osvald.rostislav.relationshipapp.movie_night
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
 import cz.osvald.rostislav.relationshipapp.databinding.MovieItemBinding
 
 class MovieListRecyclerViewAdapter(
