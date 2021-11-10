@@ -52,7 +52,7 @@ class MovieNightFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.getMoviesToWatch().observe(viewLifecycleOwner, { movieList ->
-            Log.i(LOG_TAG,"Movies observer called ($movieList)")
+            Log.i(LOG_TAG, "Movies observer called ($movieList)")
             binding.movieList.list.adapter = MovieListRecyclerViewAdapter(
                 movieList.filter { movie -> !movie.wasViewed }.sortedBy { movie -> movie.created },
                 viewModel
