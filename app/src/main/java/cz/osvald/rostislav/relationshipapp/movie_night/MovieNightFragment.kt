@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -29,6 +30,7 @@ class MovieNightFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         binding = FragmentMovieNightBinding.inflate(inflater, container, false)
         binding.addMovieButton.setOnClickListener {
             val dialogBinding = DialogAddMovieBinding.inflate(inflater)
@@ -46,6 +48,10 @@ class MovieNightFragment : Fragment() {
                 }.create()
             }?.show()
         }
+        val activity = activity
+        if (activity is AppCompatActivity) {
+            activity.setSupportActionBar(binding.toolbar)
+        }
         return binding.root
     }
 
@@ -61,14 +67,16 @@ class MovieNightFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_movie_night, menu)
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> {
-                MovieNightFragmentDirections.actionMovieNightFragmentToMovieNightHistoryFragment()
+            R.id.action_history -> {
+                findNavController().navigate(
+                    MovieNightFragmentDirections.actionMovieNightFragmentToMovieNightHistoryFragment()
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
