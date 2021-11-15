@@ -8,9 +8,9 @@ import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
 
 @Dao
 interface MovieDao: BaseDao<Movie> {
-    @Query("SELECT * FROM Movie WHERE viewedAt is NULL")
+    @Query("SELECT * FROM Movie WHERE viewedAt is NULL ORDER BY created")
     fun getMoviesToWatch(): LiveData<List<Movie>>
 
-    @Query("SELECT * FROM Movie WHERE viewedAt is not NULL")
+    @Query("SELECT * FROM Movie WHERE viewedAt is not NULL ORDER BY viewedAt DESC")
     fun getWatchedMovies(): LiveData<List<Movie>>
 }
