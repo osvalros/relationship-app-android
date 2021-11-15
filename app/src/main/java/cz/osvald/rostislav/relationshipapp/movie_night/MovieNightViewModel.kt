@@ -29,7 +29,7 @@ class MovieNightViewModel(application: Application) : AndroidViewModel(applicati
 
     fun addMovie(movie: Movie) = viewModelScope.launch { movieDao.insert(movie) }
 
-    fun updateMovie(movie: Movie) = movieDao.update(movie)
+    fun updateMovie(movie: Movie) = viewModelScope.launch { movieDao.update(movie) }
 
-    fun deleteMovie(movie: Movie) = movieDao.delete(movie)
+    fun deleteMovie(movie: Movie) = viewModelScope.launch { movieDao.delete(movie) }
 }
