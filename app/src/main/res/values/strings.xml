@@ -19,4 +19,8 @@
     <string name="relationship_app">Relationship App</string>
     <string name="movie_name">Movie name</string>
     <string name="history">History</string>
+    <string name="rating_comment">Rating comment</string>
+    <string name="seen">Seen</string>
+    <string name="viewed_movies">Viewed Movies</string>
+    <string name="delete">Delete</string>
 </resources>
