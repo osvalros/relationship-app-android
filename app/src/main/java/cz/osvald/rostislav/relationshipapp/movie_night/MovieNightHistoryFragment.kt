@@ -35,10 +35,7 @@ class MovieNightHistoryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MovieNightViewModel::class.java)
         viewModel.getWatchedMovies().observe(viewLifecycleOwner, { movieList ->
             Log.i(LOG_TAG, "Movies observer called ($movieList)")
-            binding.movieList.list.adapter = MovieListRecyclerViewAdapter(
-                movieList.filter { movie -> !movie.wasViewed }.sortedBy { movie -> movie.created },
-                viewModel
-            )
+            binding.movieList.list.adapter = MovieListRecyclerViewAdapter(movieList, viewModel)
         })
     }
 
