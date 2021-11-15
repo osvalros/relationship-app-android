@@ -38,9 +38,4 @@ class MovieNightHistoryFragment : Fragment() {
             binding.movieList.list.adapter = MovieListRecyclerViewAdapter(movieList, viewModel)
         })
     }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.addMovie(Movie(name="MovieNightHistoryFragment"+LocalDateTime.now()))
-    }
 }
