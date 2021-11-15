@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
 import cz.osvald.rostislav.relationshipapp.databinding.MovieItemBinding
+import cz.osvald.rostislav.relationshipapp.utils.Dialoger
 
 class MovieListRecyclerViewAdapter(
     private val values: List<Movie>,
@@ -26,7 +27,7 @@ class MovieListRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.binding.name.text = item.name
-        holder.binding.removeMovieButton.setOnClickListener { viewModel.addMovie(item) }
+        holder.binding.root.setOnClickListener { Dialoger.editMovieDialog(holder.binding.root.context, viewModel, item) }
     }
 
     override fun getItemCount(): Int = values.size

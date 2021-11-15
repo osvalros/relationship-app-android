@@ -7,14 +7,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cz.osvald.rostislav.relationshipapp.LOG_TAG
 import cz.osvald.rostislav.relationshipapp.R
 import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
 import cz.osvald.rostislav.relationshipapp.databinding.DialogAddMovieBinding
 import cz.osvald.rostislav.relationshipapp.databinding.FragmentMovieNightBinding
+import cz.osvald.rostislav.relationshipapp.utils.Dialoger
 
 class MovieNightFragment : Fragment() {
 
@@ -33,20 +32,7 @@ class MovieNightFragment : Fragment() {
         setHasOptionsMenu(true)
         binding = FragmentMovieNightBinding.inflate(inflater, container, false)
         binding.addMovieButton.setOnClickListener {
-            val dialogBinding = DialogAddMovieBinding.inflate(inflater)
-            activity?.let {
-                val builder = AlertDialog.Builder(it)
-                builder.apply {
-                    setView(dialogBinding.root)
-                    setPositiveButton(R.string.ok) { _, _ ->
-                        val name = dialogBinding.name.text.toString()
-                        if (name.isNotBlank()) {
-                            viewModel.addMovie(Movie(name = name))
-                        }
-                    }
-                    setNegativeButton(R.string.cancel) { _, _ -> }
-                }.create()
-            }?.show()
+            context?.let { context -> Dialoger.addMovieDialog(context, viewModel) }
         }
         val activity = activity
         if (activity is AppCompatActivity) {
