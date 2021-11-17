@@ -3,10 +3,13 @@ package cz.osvald.rostislav.relationshipapp.database
 import android.content.Context
 import androidx.room.*
 import cz.osvald.rostislav.relationshipapp.database.dao.MovieDao
+import cz.osvald.rostislav.relationshipapp.database.dao.RatingDao
 import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
+import cz.osvald.rostislav.relationshipapp.database.entitity.Rating
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+import cz.osvald.rostislav.relationshipapp.database.ALL_MIGRATIONS
 
 object DateTimeTypeConverters {
     private val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
@@ -26,7 +29,10 @@ object DateTimeTypeConverters {
     }
 }
 
-@Database(entities = [Movie::class], version = 1)
+@Database(
+    entities = [Movie::class, Rating::class],
+    version = 2,
+)
 @TypeConverters(DateTimeTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
@@ -36,6 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .databaseBuilder(
                     context.applicationContext, AppDatabase::class.java, "relationship-app.db"
                 )
+                .addMigrations(*ALL_MIGRATIONS)
                 .build()
                 .also { instance = it }
         }
@@ -43,4 +50,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun movieDao(): MovieDao
+
+    abstract fun ratingDao(): RatingDao
 }
