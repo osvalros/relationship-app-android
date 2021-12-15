@@ -31,7 +31,7 @@ object DateTimeTypeConverters {
 
 @Database(
     entities = [Movie::class, Rating::class],
-    version = 2,
+    version = 3,
 )
 @TypeConverters(DateTimeTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {

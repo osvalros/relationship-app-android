@@ -18,5 +18,6 @@ data class Rating(
 
     val movieId: Int,
     val value: Double,
+    val comment: String?,
     val user: String, // TODO later turn into actual user object
 )

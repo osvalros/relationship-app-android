@@ -12,6 +12,7 @@ import com.beust.klaxon.Klaxon
 import cz.osvald.rostislav.relationshipapp.R
 import cz.osvald.rostislav.relationshipapp.database.AppDatabase
 import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
+import cz.osvald.rostislav.relationshipapp.database.entitity.Rating
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -19,8 +20,14 @@ import java.time.format.DateTimeFormatter
 
 
 class MovieNightViewModel(application: Application) : AndroidViewModel(application) {
+    private val database by lazy {
+        AppDatabase.getInstance(application)
+    }
     private val movieDao by lazy {
-        AppDatabase.getInstance(application).movieDao()
+        database.movieDao()
+    }
+    private val ratingDao by lazy {
+        database.ratingDao()
     }
 
     fun getMoviesToWatch() = movieDao.getMoviesToWatch()
@@ -32,4 +39,6 @@ class MovieNightViewModel(application: Application) : AndroidViewModel(applicati
     fun updateMovie(movie: Movie) = viewModelScope.launch { movieDao.update(movie) }
 
     fun deleteMovie(movie: Movie) = viewModelScope.launch { movieDao.delete(movie) }
+
+    fun rateMovie(rating: Rating) = viewModelScope.launch { ratingDao.insert(rating) }
 }
