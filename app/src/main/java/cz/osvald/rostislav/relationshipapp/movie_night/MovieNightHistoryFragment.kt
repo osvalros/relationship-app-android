@@ -2,17 +2,17 @@ package cz.osvald.rostislav.relationshipapp.movie_night
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
+import cz.osvald.rostislav.relationshipapp.FRAGMENT_LOG_TAG
 import cz.osvald.rostislav.relationshipapp.LOG_TAG
-import cz.osvald.rostislav.relationshipapp.R
-import cz.osvald.rostislav.relationshipapp.database.entitity.Movie
-import cz.osvald.rostislav.relationshipapp.databinding.FragmentMovieNightBinding
 import cz.osvald.rostislav.relationshipapp.databinding.FragmentMovieNightHistoryBinding
-import java.time.LocalDateTime
+import kotlinx.coroutines.flow.collect
+
 
 class MovieNightHistoryFragment : Fragment() {
     private lateinit var binding: FragmentMovieNightHistoryBinding
@@ -21,6 +21,7 @@ class MovieNightHistoryFragment : Fragment() {
         fun newInstance() = MovieNightHistoryFragment()
     }
 
+//    private val viewModel: MovieNightViewModel by activityViewModels()
     private lateinit var viewModel: MovieNightViewModel
 
     override fun onCreateView(
@@ -33,9 +34,11 @@ class MovieNightHistoryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MovieNightViewModel::class.java)
-        viewModel.getWatchedMovies().observe(viewLifecycleOwner, { movieList ->
-            Log.i(LOG_TAG, "Movies observer called ($movieList)")
-            binding.movieList.list.adapter = MovieListRecyclerViewAdapter(movieList, viewModel)
-        })
+        lifecycle.coroutineScope.launchWhenStarted {
+            viewModel.getWatchedMovies().collect { movieList ->
+                Log.i(FRAGMENT_LOG_TAG, "Movies observer called ($movieList)")
+                binding.movieList.list.adapter = MovieListRecyclerViewAdapter(movieList, viewModel)
+            }
+        }
     }
 }
