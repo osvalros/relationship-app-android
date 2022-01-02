@@ -13,7 +13,9 @@ object ApiClient {
     }
 
     private val httpClient: OkHttpClient by lazy {
-        OkHttpClient.Builder().build()
+        OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
+            .build()
     }
 
     private val retrofit: Retrofit by lazy {
