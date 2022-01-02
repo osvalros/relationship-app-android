@@ -19,6 +19,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        buildConfigField "String", "BASE_URL", '"http://localhost:8080"'
+
         kapt {
             arguments {
                 arg("room.schemaLocation", "$projectDir/schemas")
@@ -79,6 +81,11 @@ dependencies {
     implementation("androidx.room:room-guava:$roomVersion")
     testImplementation("androidx.room:room-testing:$roomVersion")
     implementation("androidx.room:room-paging:$roomVersion")
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     implementation 'com.beust:klaxon:5.5'
 }
