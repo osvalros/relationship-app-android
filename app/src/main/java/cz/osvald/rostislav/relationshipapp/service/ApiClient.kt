@@ -24,7 +24,7 @@ object ApiClient {
             .build()
     }
 
-    val apiService: MovieNightService by lazy {
+    val movieNightService: MovieNightService by lazy {
         retrofit.create(MovieNightService::class.java)
     }
 }
