@@ -24,4 +24,7 @@
     <string name="viewed_movies">Viewed Movies</string>
     <string name="delete">Delete</string>
     <string name="rate_movie">Rate movie</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
